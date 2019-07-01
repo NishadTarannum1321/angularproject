@@ -1,0 +1,155 @@
+<h1>Employee Form</h1>
+<div class="container">
+  
+  <p>(*---fields are mandatory)</p>
+    <form [formGroup] =  "employeeForm" (ngSubmit)= 'sendData()'>
+      <div class="form-group">
+        <label for="employeeid">EmployeeId:</label>
+        <input
+        type="text"
+        class="form-control"
+        formControlName="Id"
+        id="employeeid"
+        placeholder="EmployeeId">
+        
+      </div>
+      <div class="form-group">
+          <label for="employeename">EmployeeName*</label>
+          <input
+          type="employeename"
+          class="form-control"
+          formControlName="Employeename"
+          [ngClass] = "{'is-invalid':employeeForm.controls.Employeename.invalid 
+                          && employeeForm.controls.Employeename.touched }"
+          id="employeename"
+          placeholder="Employeename">
+        
+          <div class = "invalid-feedback"> 
+              <label *ngIf = 'employeeForm.controls.Employeename.errors?.required'>EmployeeName  is mandatory</label>
+        
+            </div>
+          </div>
+            
+            <div class="form-group">
+                <label >Designation</label>
+              <select formControlName="Designation">
+                  <option value=""></option>
+                <option value="Manager">Manager</option>
+                <option value=" Software Manager">Software Manager</option>
+                <option value="Software Tester">Software Tester</option>
+                <option value="Admin">Admin</option>
+              </select>
+                
+              </div>
+              <div class="form-group">
+                  <label >Salary*</label>
+                  <input
+                  type="salary"
+                  class="form-control"
+                  formControlName="Salary"
+                  [ngClass] = "{'is-invalid':employeeForm.controls.Salary.invalid 
+                  && employeeForm.controls.Salary.touched }"
+                  id="salary">
+                  <div class = "invalid-feedback"> 
+                    <label *ngIf = 'employeeForm.controls.Salary.errors?.required'>Salary is mandatory</label>
+                      <label *ngIf = "employeeForm.controls.Salary.errors?.pattern">salary should be numbers only</label>
+                      
+                      
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label>Email*</label>
+                    <input
+                    type="id"
+                    class="form-control"
+                    formControlName="Email"
+                    [ngClass] = "{'is-invalid':employeeForm.controls.Email.invalid 
+                    && employeeForm.controls.Email.touched }"
+                    id="email">
+                  
+                    <div class = "invalid-feedback"> 
+                      <label *ngIf = 'employeeForm.controls.Email.errors?.required'> Email address is mandatory</label>
+                      <label *ngIf = 'employeeForm.controls.Email.errors?.email'> Enter a valid email address</label>
+                    </div>
+                  </div>
+                     
+                  <div class="form-group">
+                      <label>Mobile No*</label>
+                      <input
+                      type="id"
+                      class="form-control"
+                      formControlName="Mobile"
+                      [ngClass] = "{'is-invalid':employeeForm.controls.Mobile.invalid 
+                    && employeeForm.controls.Mobile.touched }"
+                      id="mobile">
+                      <div class = "invalid-feedback">
+                      <label *ngIf = "employeeForm.controls.Mobile.errors?.required">phone number is mandatory</label>
+                      <label *ngIf = "employeeForm.controls.Mobile.errors?.pattern">Mobile number should contain only numeric and start with 6 or 7 or 8 or 9 only</label>
+                      <label *ngIf = "employeeForm.get('Mobile').invalid || employeeForm.get('Mobile').touched">phone number must be a 10 digit number</label>
+                      
+                    </div>
+                  </div>
+                  <div formGroupName = "genderGroup">
+                      <label> Gender*</label>
+                        <div class="row">
+                            <div class="form-group"> 
+                         <label >Female </label>
+                            <input type="radio" value="female"  formControlName="Female">
+                            </div>
+                            <div class="form-group">
+                          <label > Male</label>
+                            <input type="radio" value="male"  formControlName="Male">     
+                            </div>
+                            <div class="form-group">
+                          <label> Others </label>
+                              <input type="radio" value="Others" formControlName="Others">     
+                             </div>
+                        </div>
+                        
+                      
+                  </div>
+                  <div formGroupName ="Checkbox">
+                           <label>Languages known:</label>
+                           <div class="row">
+                          <div class="form-group"> 
+                          <label >English </label>
+                             <input type="checkbox"   formControlName="English">
+                             </div>
+                             <div class="form-group">
+                           <label > Hindi</label>
+                             <input type="checkbox"   formControlName="Hindi">     
+                             </div>
+                             <div class="form-group">
+                           <label> Telugu </label>
+                               <input type="checkbox" formControlName="Telugu">     
+                              </div>
+                            <div class="form-group">
+                           <label > Urdu</label>
+                             <input type="checkbox"   formControlName="Urdu">     
+                             </div>
+                         </div>
+                        
+                        </div>
+                        <div class="form-group">
+                            <label>Qualification</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            formControlName="Qualification"
+                            id="quali">
+                            
+                          </div>
+          
+      
+
+        <button (onclick)="submit()"type="submit" class="btn btn-primary"[title]= 'employeeForm.valid ? "click to submit":"Please update the required fields"' [disabled] = '!employeeForm.valid' >Submit</button>
+  
+    </form>
+  </div>
+  <div class="container">
+  <div class="link">
+  <a  href="#" routerLink = 'EmployeeList'>ViewEmployeeList <span class="sr-only">(current)</span></a>
+</div>
+</div>
+
+
